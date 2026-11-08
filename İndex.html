@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEMEN PAZARYERİ</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#222}
+header{background:#ff7900;color:white;padding:20px;text-align:center}
+header h1{margin:0;font-size:32px}
+header p{margin:5px}
+.search{padding:15px;background:white}
+.search input{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:16px}
+nav{display:flex;justify-content:space-around;background:white;padding:14px;flex-wrap:wrap;gap:12px}
+nav a{color:#ff7900;text-decoration:none;font-weight:bold}
+.container{padding:15px}
+.banner{background:#ff7900;color:white;padding:25px;border-radius:15px;text-align:center}
+.banner h2{font-size:25px}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.category{background:white;padding:18px 5px;text-align:center;border-radius:12px;font-weight:bold}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.product{background:white;padding:12px;border-radius:12px;text-align:center}
+.product .photo{font-size:55px;padding:15px}
+.product button,.seller button{background:#ff7900;color:white;border:0;padding:12px;border-radius:8px;width:100%;font-weight:bold}
+.price{color:#ff7900;font-size:20px;font-weight:bold}
+.seller{background:white;padding:18px;border-radius:12px;margin-top:20px}
+.seller input{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px}
+footer{background:#222;color:white;text-align:center;padding:25px;margin-top:25px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🟠 HEMEN</h1>
+<p>Aradığın her şey HEMEN burada!</p>
+</header>
+
+<div class="search">
+<input id="search" placeholder="🔍 Ürün ara..." oninput="searchProducts()">
+</div>
+
+<nav>
+<a href="#home">Ana Sayfa</a>
+<a href="#categories">Kategoriler</a>
+<a href="#products">Ürünler</a>
+<a href="#seller">Satıcı Ol</a>
+</nav>
+
+<div class="container" id="home">
+<div class="banner">
+<h2>HEMEN Alışverişe Başla!</h2>
+<p>Binlerce ürün, tek adres.</p>
+</div>
+
+<h2 id="categories">Kategoriler</h2>
+<div class="categories">
+<div class="category">📱 Elektronik</div>
+<div class="category">👕 Giyim</div>
+<div class="category">🏠 Ev</div>
+<div class="category">💻 Bilgisayar</div>
+<div class="category">🎮 Oyun</div>
+<div class="category">⌚ Aksesuar</div>
+</div>
+
+<h2 id="products">Öne Çıkan Ürünler</h2>
+<div class="products" id="productList">
+<div class="product">
+<div class="photo">📱</div>
+<h3>Akıllı Telefon</h3>
+<p class="price">15.999 TL</p>
+<button onclick="buy('Akıllı Telefon')">İncele</button>
+</div>
+<div class="product">
+<div class="photo">💻</div>
+<h3>Dizüstü Bilgisayar</h3>
+<p class="price">24.999 TL</p>
+<button onclick="buy('Dizüstü Bilgisayar')">İncele</button>
+</div>
+<div class="product">
+<div class="photo">🎧</div>
+<h3>Kulaklık</h3>
+<p class="price">799 TL</p>
+<button onclick="buy('Kulaklık')">İncele</button>
+</div>
+<div class="product">
+<div class="photo">⌚</div>
+<h3>Akıllı Saat</h3>
+<p class="price">1.499 TL</p>
+<button onclick="buy('Akıllı Saat')">İncele</button>
+</div>
+</div>
+
+<div class="seller" id="seller">
+<h2>🏪 Satıcı Paneli</h2>
+<p>HEMEN'de mağazanı oluştur.</p>
+<input id="store" placeholder="Mağaza adı">
+<input id="owner" placeholder="Satıcı adı">
+<input id="city" placeholder="Şehir">
+<button onclick="register()">Mağaza Oluştur</button>
+<p id="result"></p>
+</div>
+</div>
+
+<footer>
+<h2>🟠 HEMEN PAZARYERİ</h2>
+<p>Alışverişin yeni adresi.</p>
+<p>© 2026 HEMEN</p>
+</footer>
+
+<script>
+function buy(name){
+alert(name+" ürününü seçtiniz. Sipariş sistemi yakında!");
+}
+function register(){
+let store=document.getElementById("store").value;
+let owner=document.getElementById("owner").value;
+let city=document.getElementById("city").value;
+if(!store||!owner||!city){
+alert("Lütfen bütün alanları doldurun.");
+return;
+}
+document.getElementById("result").innerText=
+"Mağaza taslağı oluşturuldu: "+store+" - "+owner+" - "+city;
+}
+function searchProducts(){
+let q=document.getElementById("search").value.toLowerCase();
+document.querySelectorAll(".product").forEach(p=>{
+p.style.display=p.innerText.toLowerCase().includes(q)?"block":"none";
+});
+}
+</script>
+</body>
+</html>
